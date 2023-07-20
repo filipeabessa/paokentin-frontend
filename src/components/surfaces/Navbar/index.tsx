@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Box from '@/components/layout/Box';
-import Link from '../Link';
+import Link from '../../Link';
 import navLinksProperties from './data';
 
 const Navbar: FC = () => {
