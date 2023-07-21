@@ -8,8 +8,21 @@ interface CustomLinkProps extends Omit<NextLinkProps, 'passHref'> {
 
 const Link: React.FC<CustomLinkProps> = ({ href, MuiProps, children }) => {
   return (
-    <NextLink href={href} passHref>
-      <MuiLink {...MuiProps}>{children}</MuiLink>
+    <NextLink 
+      href={href} 
+      passHref
+      style={{
+        textDecoration: 'none',
+      }}
+    >
+      <MuiLink 
+        {...MuiProps}
+        sx={{
+          textDecoration: 'none',
+        }}
+      >
+        {children}
+      </MuiLink>
     </NextLink>
   );
 };
