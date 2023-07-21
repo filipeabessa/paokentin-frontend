@@ -9,6 +9,7 @@ export interface CardActionProps {
 
 export interface CardProps {
   title?: string;
+  titleVariant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   subheader?: string;
   variant?: 'outlined' | 'elevation';
   actions?: CardActionProps[];

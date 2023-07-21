@@ -7,15 +7,16 @@ import Link from 'next/link';
 import Button from '@components/inputs/Button';
 import Typography from '@components/dataDisplay/Typography';
 
-import { ICssProperties } from '@/interfaces';
+import { ICssProperties } from '@/types';
 import { CardProps, CardActionProps } from './interfaces';
 
 function Card({
   children,
   title,
+  titleVariant,
   subheader,
   variant = 'elevation',
-  elevation = 0,
+  elevation = 3,
   minWidth,
   actions,
   width,
@@ -46,17 +47,13 @@ function Card({
         minHeight,
         overflowY,
         width: width || '100%',
-        height: height || '100%',
+        height: height,
         position,
         top,
         left,
         right,
         borderRadius,
         padding,
-        display: 'flex',
-        alignItems: alignItems || 'center',
-        flexDirection: flexDirection || 'row',
-        justifyContent: justifyContent || 'center',
         marginTop,
         marginBottom,
         background,
@@ -64,14 +61,14 @@ function Card({
       {...props}
     >
       <>
-        {title && subheader && (
+        {title && (
           <MuiCardHeader
             title={
-              <Typography variant="h1" color="textPrimary">
+              <Typography variant={titleVariant} color="textPrimary">
                 {title}
               </Typography>
             }
-            subheader={
+            subheader={ subheader &&
               <Typography variant="h4" color="textPrimary" marginTop="10px">
                 {subheader}
               </Typography>
@@ -81,7 +78,7 @@ function Card({
 
         <MuiCardContent
           sx={{
-            padding: 0,
+            padding: "20px",
             '&:last-child': {
               paddingBottom: 0,
             },
@@ -109,7 +106,7 @@ function Card({
                   );
                 }
                 return (
-                  <Link key={action?.label} href={action.href}>
+                  <Link key={action?.label} href={action.href!}>
                     {action.label}
                   </Link>
                 );

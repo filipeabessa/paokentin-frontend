@@ -1,4 +1,4 @@
 export type NavLinkProperties = {
   label: string;
-  href: string;
+  path: string;
 }

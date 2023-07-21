@@ -5,18 +5,18 @@ import Container from '@mui/material/Container';
 import Image from 'next/image'
 import Link from '@/components/Link';
 import Box from '@/components/layout/Box';
-import Typography from '@/components/Typography';
+import { NavLinkProperties } from './types';
 
-const pages = [
-  {name:'Cadastro de pão', path: "/pao/cadastro"}, 
-  {name:'Lista de pães', path: "fornada/lista"}, 
-  {name:'Cadastro fornada', path: "/fornada/cadastro"},
+const pages : NavLinkProperties[] = [
+  {label:'Lista de pães', path: "/pao/lista"}, 
+  {label:'Página do padeiro', path: "padeiro/lista"}, 
 ];
 
 function ResponsiveAppBar() {
 
   return (
-    <AppBar position="static" color="inherit">
+    <AppBar position="static" color="inherit"
+    >
       <Container maxWidth="xl">
         <Toolbar 
           disableGutters
@@ -45,9 +45,9 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Link
                 href={page.path}
-                key={page.name}
+                key={page.label}
               >
-                  {page.name}
+                  {page.label}
               </Link>
             ))}
 
