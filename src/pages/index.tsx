@@ -3,7 +3,7 @@ import Box from "@/components/layout/Box";
 
 export default function Home() {
   return (
-    <Box>
+    <>
       <Typography
         sx={{
           fontSize: '20px',
@@ -13,6 +13,6 @@ export default function Home() {
       >
         Testando  
       </Typography>
-    </Box>    
+    </>
   );
 }
