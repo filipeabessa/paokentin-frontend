@@ -36,3 +36,8 @@ export interface ICssProperties {
   background?: string;
   paddingTop?: string;
 }
+
+export type CreateBatchDto = {
+  breadTypeId: number;
+  quantity: number;
+}

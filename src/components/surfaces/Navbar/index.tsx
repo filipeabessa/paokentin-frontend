@@ -9,7 +9,7 @@ import { NavLinkProperties } from './types';
 
 const pages : NavLinkProperties[] = [
   {label:'Lista de pães', path: "/pao/lista"}, 
-  {label:'Página do padeiro', path: "padeiro/lista"}, 
+  {label:'Página do padeiro', path: "padeiro"}, 
 ];
 
 function ResponsiveAppBar() {

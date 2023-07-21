@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import CreateBatchForm from '@/components/forms/CreateBatchForm';
 import Box from '@/components/layout/Box';
 import BaseLayout from '@/layouts/Base';
+import { CreateBatchDto } from '@/types';
 
 
 const CreateBatchPage: FC = () => {
@@ -18,8 +19,8 @@ const CreateBatchPage: FC = () => {
     getBreadTypes();
   }, []);
 
-  const createBatch = async (requestBody: any) => {
-    const response = await fetch('http://localhost:8080/batch',
+  const createBatch = async (requestBody: CreateBatchDto) => {
+    const response = await fetch('http://localhost:8080/batches',
     {
       method: 'POST',
       headers: {

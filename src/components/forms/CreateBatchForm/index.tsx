@@ -1,11 +1,12 @@
+import { FC, ReactNode, useState } from 'react';
 import BreadTypeCard from '@/components/inputs/BreadTypeCard';
 import Button from '@/components/inputs/Button';
 import Box from '@/components/layout/Box';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
-import { FC, ReactNode, useState } from 'react';
 import * as yup from 'yup';
+import { CreateBatchDto } from '@/types';
 
 const validationSchema = yup.object({
   breadTypeId: yup
@@ -29,13 +30,13 @@ const CreateBatchForm: FC<CreateBatchFormProps> = ({
   const [selectedBreadTypeId, setSelectedBreadTypeId] = useState(0);
   const formik = useFormik({
     initialValues: {
-      breadTypeId: 0,
-      breadsQuantity: 0
+      breadsQuantity: 6
     },
     validationSchema: validationSchema,
     onSubmit: async (values : any) => {
       const response = await handleSubmitForm({
-        ...values,
+        quantity: values.breadsQuantity,
+        breadTypeId: values.breadTypeId,
       });
 
       if (response.status === 200) {        
@@ -64,18 +65,29 @@ const CreateBatchForm: FC<CreateBatchFormProps> = ({
           gap="10px"
           flexWrap="wrap"
         >
-        {
-          breadTypes?.map((breadType: any) => (
-            <BreadTypeCard
-              key={`breadtype-${breadType.id}`}
-              handleClick={() => handleSelectBreadType(breadType.id)}
-              backgroundColor={breadType.relatedColor}
-              title={breadType.name}
-              selected={selectedBreadTypeId === breadType.id}
-            />
-          ))
-        }
+          {
+            breadTypes?.map((breadType: any) => (
+              <BreadTypeCard
+                key={`breadtype-${breadType.id}`}
+                handleClick={() => handleSelectBreadType(breadType.id)}
+                backgroundColor={breadType.relatedColor}
+                title={breadType.name}
+                selected={selectedBreadTypeId === breadType.id}
+              />
+            ))
+          }
         </Box>
+        {
+          Boolean(formik.errors.breadTypeId) && (
+            <Typography
+              color="red"
+            >
+              {
+                String(formik.errors.breadTypeId)
+              }
+            </Typography>
+          )
+        }
 
         <TextField
           id="breadsQuantity"
