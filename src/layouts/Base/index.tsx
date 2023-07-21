@@ -5,7 +5,7 @@ import React, { FC, ReactElement } from 'react';
 
 interface BaseLayoutProps {
   pageTitle: string;
-  children: ReactElement;
+  children?: ReactElement;
 }
 
 const BaseLayout: FC<BaseLayoutProps> = ({
