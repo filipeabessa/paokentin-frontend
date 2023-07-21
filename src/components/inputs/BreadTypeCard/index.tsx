@@ -3,7 +3,7 @@ import { darkenHexColor } from '@/utils';
 import { FC } from 'react';
 
 interface BreadTypeCardProps {
-  handleClick: () => void;
+  handleClick?: () => void;
   backgroundColor: string;
   title: string;
   selected?: boolean;

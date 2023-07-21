@@ -1,5 +1,7 @@
 import BatchCard from '@/components/dataDisplay/BatchCard';
+import Typography from '@/components/dataDisplay/Typography';
 import CreateBreadTypeForm from '@/components/forms/CreateBreadTypeForm';
+import BreadTypeCard from '@/components/inputs/BreadTypeCard';
 import Button from '@/components/inputs/Button';
 import Box from '@/components/layout/Box';
 import Card from '@/components/surfaces/Card';
@@ -10,13 +12,13 @@ import { FC, useEffect, useState } from 'react';
 const BakerPage: FC = () => {
   const [createBreadTypeModalOpen, setCreateBreadTypeModalOpen] = useState(false);
   const [batches, setBatches] = useState<any>([]);
+  const [breadTypes, setBreadTypes] = useState<any>([]);
 
   const handleOpenCreateBreadTypeModal = () => {
     setCreateBreadTypeModalOpen(true);
   };
 
   const handleCloseCreateBreadTypeModal = () => {
-    console.log("testebla")
     setCreateBreadTypeModalOpen(false);
   };
 
@@ -34,19 +36,21 @@ const BakerPage: FC = () => {
 
   const getBatches = async () => {
     const response = await fetch("http://localhost:8080/batches");
-    console.log(response)
     const data = await response.json();
-
-    console.log(data);
 
     setBatches(data)
   }
 
+  const getBreadTypes = async () => {
+    const response = await fetch('http://localhost:8080/breadtypes');
+    const data = await response.json();
+    setBreadTypes(data);
+  }
+
   useEffect(() => {
     getBatches();
+    getBreadTypes();
   }, []);
-
-
 
   return (
     <>
@@ -68,20 +72,35 @@ const BakerPage: FC = () => {
                 display="flex"
                 flexDirection="column"
                 gap="10px"
+                padding='10px'
               >
-              <Button
-                href='/fornada/criar'
-              >
-                  Cadastrar fornada
-              </Button>
-              {
-                batches.length > 0 && batches.map((batch : any) => {
-                  <BatchCard 
-                    batchId={batch.id}
-                    breadsQuantity={batch.quantity}
-                  />
-                })
-              }
+                <Button
+                  href='/fornada/criar'
+                  fullWidth
+                >
+                    Cadastrar fornada
+                </Button>
+                <Typography
+                    variant="h4"
+                    color="black.main"
+                  >
+                    Fornadas:
+                  </Typography>
+                <Box
+                  display="flex"
+                  flexWrap="wrap"
+                  gap="10px"
+                >
+                  {
+                    batches.length > 0 && batches?.map((batch : any) => (
+                      <BatchCard 
+                        batchId={batch.id}
+                        breadsQuantity={batch.breadsQuantity}
+                        key={`batch-${batch.id}`}
+                      />
+                    ))
+                  }
+                </Box>
               </Box>
             </Card>
             <Card
@@ -93,13 +112,36 @@ const BakerPage: FC = () => {
             >
               <Box
                 display="flex"
+                flexDirection="column"
                 gap="10px"
+                padding='10px'
               >
                 <Button
                   onClick={handleOpenCreateBreadTypeModal}
                 >
                   Cadastrar tipo de pão
                 </Button>
+                <Typography
+                    variant="h4"
+                    color="black.main"
+                  >
+                    Tipos de pão:
+                  </Typography>
+                <Box
+                  display="flex"
+                  flexWrap="wrap"
+                  gap="10px"
+                >
+                  {
+                    breadTypes.length > 0 && breadTypes?.map((bread : any) => (
+                      <BreadTypeCard 
+                        title={bread.name}
+                        backgroundColor={bread.relatedColor}
+                        key={`breadtype-${bread.id}`}
+                      />
+                    ))
+                  }
+                </Box>
               </Box>
             </Card>
           </Box>

@@ -2,17 +2,26 @@ import Card from '@/components/surfaces/Card';
 import { FC } from 'react';
 import Typography from '@/components/dataDisplay/Typography';
 
-const BatchCard: FC<any> = ({
+interface BatchCardProps {
+  batchId: number;
+  breadsQuantity: number;
+}
+
+const BatchCard: FC<BatchCardProps> = ({
   batchId,
-  batchQuantity,
+  breadsQuantity,
 }) => {
   return (
-    <Card>
+    <Card
+      width="200px"
+      height="100px"
+      elevation={2}
+    >
       <Typography>
-        {batchId}        
+        <strong>Id da Fornada:</strong> {batchId}        
       </Typography>
       <Typography>
-        {batchQuantity}
+      <strong>Quantidade de pães:</strong> {breadsQuantity}
       </Typography>
     </Card>
   );
