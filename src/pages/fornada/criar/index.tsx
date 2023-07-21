@@ -1,3 +1,4 @@
+import CreateBatchForm from '@/components/forms/CreateBatchForm';
 import Box from '@/components/layout/Box';
 import Navbar from '@/components/surfaces/Navbar';
 import BaseLayout from '@/layouts/Base';
@@ -10,8 +11,10 @@ const CreateBatchPage: FC = () => {
     <BaseLayout
       pageTitle='Criação de Fornada'
     >
-      <Box>
-
+      <Box
+        minWidth="800px"
+      >
+        <CreateBatchForm />
       </Box>
     </BaseLayout>
   );

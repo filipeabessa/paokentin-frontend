@@ -4,11 +4,9 @@ import Box from '@/components/layout/Box';
 import Card from '@/components/surfaces/Card';
 import BaseModal from '@/components/surfaces/modals/BaseModal';
 import BaseLayout from '@/layouts/Base';
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 
-// import { Container } from './styles';
-
-const BakerPage: React.FC = () => {
+const BakerPage: FC = () => {
   const [createBreadTypeModalOpen, setCreateBreadTypeModalOpen] = useState(false);
 
   const handleOpenCreateBreadTypeModal = () => {

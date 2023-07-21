@@ -29,10 +29,10 @@ const BaseLayout: FC<BaseLayoutProps> = ({
           >
             {pageTitle}
           </Typography>
-        </Box>
-        {
+          {
           children
-        }
+          }
+        </Box>
     </>
   );
 }
