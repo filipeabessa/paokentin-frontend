@@ -3,6 +3,7 @@ import Button from '@/components/inputs/Button';
 import Box from '@/components/layout/Box';
 import { TextField } from '@mui/material';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
 import { FC, ReactNode, useState } from 'react';
 import * as yup from 'yup';
 
@@ -17,14 +18,14 @@ const validationSchema = yup.object({
 
 interface CreateBatchFormProps {
   handleSubmitForm: (requestBody: any) => Promise<any>;
-  handleCloseModal: () => void;
   breadTypes: any;
 }
 
-const CreateBatchForm: FC<any> = ({
+const CreateBatchForm: FC<CreateBatchFormProps> = ({
   handleSubmitForm,
-  handleCloseModal,
+  breadTypes,
 }) => {
+  const router = useRouter();
   const [selectedBreadTypeId, setSelectedBreadTypeId] = useState(0);
   const formik = useFormik({
     initialValues: {
@@ -38,8 +39,8 @@ const CreateBatchForm: FC<any> = ({
       });
 
       if (response.status === 200) {        
-        handleCloseModal();
         formik.resetForm();
+        router.push('/padeiro');
       }
     },
   });
@@ -63,12 +64,17 @@ const CreateBatchForm: FC<any> = ({
           gap="10px"
           flexWrap="wrap"
         >
-          <BreadTypeCard
-            title={'Pão de forma'}
-            backgroundColor="#FFD700"
-            handleClick={() => handleSelectBreadType(1)}
-            selected={selectedBreadTypeId === 1}
-          />          
+        {
+          breadTypes?.map((breadType: any) => (
+            <BreadTypeCard
+              key={`breadtype-${breadType.id}`}
+              handleClick={() => handleSelectBreadType(breadType.id)}
+              backgroundColor={breadType.relatedColor}
+              title={breadType.name}
+              selected={selectedBreadTypeId === breadType.id}
+            />
+          ))
+        }
         </Box>
 
         <TextField
