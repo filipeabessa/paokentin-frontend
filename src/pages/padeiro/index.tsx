@@ -1,11 +1,9 @@
-import Typography from '@/components/dataDisplay/Typography';
 import CreateBreadTypeForm from '@/components/forms/CreateBreadTypeForm';
 import Button from '@/components/inputs/Button';
 import Box from '@/components/layout/Box';
 import Card from '@/components/surfaces/Card';
-import Navbar from '@/components/surfaces/Navbar';
 import BaseModal from '@/components/surfaces/modals/BaseModal';
-import { Container } from '@mui/material';
+import BaseLayout from '@/layouts/Base';
 import React, { useState } from 'react';
 
 // import { Container } from './styles';
@@ -27,21 +25,9 @@ const BakerPage: React.FC = () => {
 
   return (
     <>
-      <Navbar />
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          width="100%"
-          height="100vh"
-          padding="20px"
-        >
-          <Typography 
-            variant="h1"
-            color="black.main"
-          >
-            Página do padeiro
-          </Typography>
+      <BaseLayout
+        pageTitle='Página do padeiro'
+      >
             <Box
               display="flex"
               gap="10px"
@@ -57,9 +43,11 @@ const BakerPage: React.FC = () => {
                 display="flex"
                 gap="10px"
               >
-              <Button>
+              <Button
+                href='/fornada/criar'
+              >
                   Cadastrar fornada
-                </Button>
+              </Button>
               </Box>
             </Card>
             <Card
@@ -80,8 +68,8 @@ const BakerPage: React.FC = () => {
                 </Button>
               </Box>
             </Card>
-          </Box>            
-        </Box>
+          </Box>
+        </BaseLayout>   
 
         <BaseModal
           open={createBreadTypeModalOpen}
