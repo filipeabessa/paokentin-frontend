@@ -1,29 +1,21 @@
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material';
 
-interface CustomLinkProps extends Omit<NextLinkProps, 'passHref'> {
-  MuiProps?: Omit<MuiLinkProps, 'href'>;
+interface CustomLinkProps extends NextLinkProps {
   children: React.ReactNode;
+  sx?: any;
+  href: string;
 }
 
-const Link: React.FC<CustomLinkProps> = ({ href, MuiProps, children }) => {
+const Link: React.FC<CustomLinkProps> = ({ 
+  href, children }) => {
   return (
-    <NextLink 
+      <MuiLink
       href={href} 
-      passHref
-      style={{
-        textDecoration: 'none',
-      }}
-    >
-      <MuiLink 
-        {...MuiProps}
-        sx={{
-          textDecoration: 'none',
-        }}
+      component={NextLink}
       >
         {children}
       </MuiLink>
-    </NextLink>
   );
 };
 

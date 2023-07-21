@@ -7,7 +7,11 @@ import Link from '@/components/Link';
 import Box from '@/components/layout/Box';
 import Typography from '@/components/Typography';
 
-const pages = ['Cadastro de pão', 'Lista de pães', 'Cadastro fornada'];
+const pages = [
+  {name:'Cadastro de pão', path: "/pao/cadastro"}, 
+  {name:'Lista de pães', path: "fornada/lista"}, 
+  {name:'Cadastro fornada', path: "/fornada/cadastro"},
+];
 
 function ResponsiveAppBar() {
 
@@ -23,6 +27,9 @@ function ResponsiveAppBar() {
         >
           <Link
             href="/"
+            sx={{
+              marginTop: '50px',
+            }}
           >
             <Image
               src="/paokentin-logo.png"
@@ -37,12 +44,10 @@ function ResponsiveAppBar() {
           >
             {pages.map((page) => (
               <Link
-                href={`/${page}`}
-                key={page}
+                href={page.path}
+                key={page.name}
               >
-                <Typography>
-                  {page}
-                </Typography>
+                  {page.name}
               </Link>
             ))}
 
