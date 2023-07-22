@@ -46,12 +46,6 @@ const CreateBreadTypeForm: FC<CreateBreadTypeFormProps> = ({
       const response = await handleSubmitForm({
         ...values,
       });
-
-      
-      if (response.status === 200) {
-        handleCloseModal();
-        formik.resetForm();
-      }
     },
   });
 

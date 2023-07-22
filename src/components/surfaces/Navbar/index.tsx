@@ -8,8 +8,8 @@ import Box from '@/components/layout/Box';
 import { NavLinkProperties } from './types';
 
 const pages : NavLinkProperties[] = [
-  {label:'Lista de pães', path: "/pao/lista"}, 
-  {label:'Página do padeiro', path: "padeiro"}, 
+  {label:'Lista de fornadas', path: "/fornada/lista"}, 
+  {label:'Página do padeiro', path: "/padeiro"}, 
 ];
 
 function ResponsiveAppBar() {

@@ -3,23 +3,21 @@ import Box from '@/components/layout/Box';
 import BaseLayout from '@/layouts/Base';
 import { FC, useEffect, useState } from 'react';
 
-// import { Container } from './styles';
-
-const BreadListPage: FC = () => {
-  const [breadTypes, setBreadTypes] = useState<any>([]);
+const BatchListPage: FC = () => {
+  const [batches, setBatches] = useState<any>([]);
 
   useEffect(() => {
-    getBreadTypes();
+    getBatches();
   }, []);
   
-  const getBreadTypes = async () => {
-    const response = await fetch('http://localhost:8080/breadtypes');
+  const getBatches = async () => {
+    const response = await fetch('http://localhost:8080/batches');
     const data = await response.json();
-    setBreadTypes(data);
+    setBatches(data);
   }
   return (
     <BaseLayout
-      pageTitle='Lista de Pães'
+      pageTitle='Lista de Fornadas'
     >
       <Box
         display="flex"
@@ -28,7 +26,7 @@ const BreadListPage: FC = () => {
         padding="20px"
       >
         {
-          breadTypes.map((breadType: any) => (
+          batches.map((breadType: any) => (
             <BreadTypeCard 
               key={breadType.id}
               title={breadType.name}
@@ -41,4 +39,4 @@ const BreadListPage: FC = () => {
   );
 }
 
-export default BreadListPage;
+export default BatchListPage;

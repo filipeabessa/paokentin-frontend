@@ -47,6 +47,14 @@ const BakerPage: FC = () => {
     setBreadTypes(data);
   }
 
+  const handleSendCreateBreadTypeForm = async (requestBody: any) => {
+    const response = await createBreadType(requestBody);
+    if (response.status === 200) {
+      handleCloseCreateBreadTypeModal();
+      getBreadTypes();
+    }
+  }
+
   useEffect(() => {
     getBatches();
     getBreadTypes();
@@ -154,7 +162,7 @@ const BakerPage: FC = () => {
         >
           <CreateBreadTypeForm
             handleCloseModal={handleCloseCreateBreadTypeModal}
-            handleSubmitForm={createBreadType}          
+            handleSubmitForm={handleSendCreateBreadTypeForm}          
           />
         </BaseModal>
     </>
