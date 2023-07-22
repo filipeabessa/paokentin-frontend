@@ -1,5 +1,5 @@
 import Card from "@/components/surfaces/Card";
-import { FC, use, useEffect } from "react";
+import { FC, ReactElement, use, useEffect } from "react";
 import Typography from "@/components/dataDisplay/Typography";
 
 interface BatchCardProps {
@@ -7,16 +7,15 @@ interface BatchCardProps {
   breadsQuantity: number;
   backgroundColor?: string;
   breadType: any;
+  children?: ReactElement;
 }
 
 const BatchCard: FC<BatchCardProps> = ({
   batchId,
   breadsQuantity,
   breadType,
+  children,
 }) => {
-  useEffect(() => {
-    console.log(breadType);
-  }, [breadType]);
 
   return (
     <Card
@@ -35,6 +34,10 @@ const BatchCard: FC<BatchCardProps> = ({
       <Typography>
         <strong>Quantidade de pães:</strong> {breadsQuantity}
       </Typography>
+
+      {
+        children
+      }
     </Card>
   );
 };

@@ -1,3 +1,5 @@
+import BatchCard from '@/components/dataDisplay/BatchCard';
+import Timer from '@/components/dataDisplay/Timer';
 import BreadTypeCard from '@/components/inputs/BreadTypeCard';
 import Box from '@/components/layout/Box';
 import BaseLayout from '@/layouts/Base';
@@ -26,12 +28,17 @@ const BatchListPage: FC = () => {
         padding="20px"
       >
         {
-          batches.map((breadType: any) => (
-            <BreadTypeCard 
-              key={breadType.id}
-              title={breadType.name}
-              backgroundColor={breadType.relatedColor}
-            />
+          batches.map((batch: any) => (
+            <BatchCard 
+              batchId={batch?.id}
+              breadsQuantity={batch?.breadsQuantity}
+              key={`batch-${batch?.id}`}
+              breadType={batch?.breadType}
+            >
+              <Timer 
+                finishedAt={batch?.finishAt}
+              />
+            </BatchCard>
           ))
         }        
       </Box>
