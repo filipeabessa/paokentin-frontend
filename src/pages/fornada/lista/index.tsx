@@ -1,5 +1,6 @@
 import BatchCard from '@/components/dataDisplay/BatchCard';
 import Timer from '@/components/dataDisplay/Timer';
+import Typography from '@/components/dataDisplay/Typography';
 import BreadTypeCard from '@/components/inputs/BreadTypeCard';
 import Box from '@/components/layout/Box';
 import BaseLayout from '@/layouts/Base';
@@ -35,9 +36,20 @@ const BatchListPage: FC = () => {
               key={`batch-${batch?.id}`}
               breadType={batch?.breadType}
             >
-              <Timer 
-                finishedAt={batch?.finishAt}
-              />
+              <Box
+                display="flex"
+                flexDirection="column"
+                gap="10px"
+                padding='10px'
+                background='white'
+              >
+                <Typography>
+                  <strong>Tempo para a fornada ficar pronta:</strong>
+                </Typography>
+                <Timer 
+                  finishedAt={batch?.finishAt}
+                />
+              </Box>
             </BatchCard>
           ))
         }        
