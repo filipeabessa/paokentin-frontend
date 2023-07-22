@@ -72,7 +72,7 @@ const BakerPage: FC = () => {
             <Card
               marginTop='20px'
               minHeight='300px'
-              minWidth='500px'
+              minWidth='600px'
               title='Fornada'
               titleVariant='h2'
             >
@@ -105,6 +105,7 @@ const BakerPage: FC = () => {
                         batchId={batch.id}
                         breadsQuantity={batch.breadsQuantity}
                         key={`batch-${batch.id}`}
+                        breadType={batch.breadType}
                       />
                     ))
                   }
@@ -114,7 +115,7 @@ const BakerPage: FC = () => {
             <Card
               marginTop='20px'
               minHeight='300px'
-              minWidth='500px'
+              minWidth='600px'
               title='Pão'
               titleVariant='h2'
             >
