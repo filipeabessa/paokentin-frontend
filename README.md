@@ -1,10 +1,9 @@
 # Front-end Paokentin
 
-## Para inicializar o projeto, rode:
-```
-yarn install
-e
-yarn dev
+## Para inicializar o projeto, rode os seguintes comandos:
 
+```bash
+yarn install
+yarn dev
 ```
 
